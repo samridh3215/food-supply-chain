@@ -47,7 +47,7 @@ $(document).ready(function () {
 	});
 
 	// Placing order.
-	$("#_orderbtn").click(function () {
+	$("#_orderbtn").click(function (e) {
 		web3.eth.getAccounts().then(function (accounts) {
 			var account = accounts[0];
 			var pid = $("#_pid").val();
@@ -55,7 +55,7 @@ $(document).ready(function () {
 			var cname = $("#_cname").val();
 			var caddress = $("#_caddress").val();
 			console.log("place order : " + pid + quantity + cname + caddress);
-
+			console.log("EVENT", e)
 			return contract.methods.placeOrder(cname, caddress, pid, quantity).send({ from: account , gas: 3000000});
 		}).then(function (trx) {
 			console.log(trx);

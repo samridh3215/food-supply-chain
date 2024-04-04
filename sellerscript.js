@@ -1,13 +1,32 @@
-const web3 = new Web3(Web3.givenProvider || "http://localhost:7545");
-console.log("HELLO")
-var contract = new web3.eth.Contract(abi, address);
-console.log(web3, contract)
-web3.eth.getAccounts().then(function (accounts) {
-	var account = accounts[0];
-	console.log(account)
-})
+var web3, contract;
+async function init() {
+    try {
+        // Prompt the user to connect their MetaMask wallet
+        await window.ethereum.request({ method: 'eth_requestAccounts' });
 
-$(document).ready(function () {
+        // Initialize web3 with the provider from MetaMask
+        web3 = new Web3(window.ethereum);
+
+        console.log("HELLO");
+
+        // Replace 'abi' and 'address' with your contract ABI and address
+        contract = new web3.eth.Contract(abi, address);
+        console.log(web3, contract);
+
+        // Get the current user account from MetaMask
+        const accounts = await web3.eth.getAccounts();
+        const account = accounts[0];
+        console.log(account);
+
+        // Your remaining code...
+    } catch (error) {
+        // Handle errors
+        console.error(error);
+    }
+}
+
+$(document).ready( async function () {
+	await init()
 	$("#_updatebtn").hide();
 	$("#_addbtn").hide();
 

@@ -126,6 +126,8 @@ contract SupplyChain{
         }
     }
     
+    // intermediate bodies 
+
     
     
     
@@ -136,13 +138,20 @@ contract SupplyChain{
         return (products[_pid].id, products[_pid].price, products[_pid].quantity, products[_pid].product_name);
     }
     
-    function placeOrder(string memory _cname, string memory _daddress, int _pid, int _quantity) public {
-        require(products[_pid].quantity >= _quantity);
-        
-        totalOrder += 1;
-        orders[totalOrder] = order(totalOrder, _pid, _quantity, _cname, "Placed", _daddress, msg.sender);
-        products[_pid].quantity -= _quantity;
-    }
+function placeOrder(string memory _cname, string memory _daddress, int _pid, int _quantity) public {
+    require(products[_pid].quantity >= _quantity, "Insufficient quantity");
+
+    // int totalPrice = products[_pid].price * _quantity;
+    // require(msg.value >= uint(totalPrice), "Insufficient payment");
+
+    totalOrder += 1;
+
+    orders[totalOrder] = order(totalOrder, _pid, _quantity, _cname, "Placed", _daddress, msg.sender);
+    products[_pid].quantity -= _quantity;
+    // if (msg.value > uint(totalPrice)) {
+    //     msg.sender.transfer(msg.value - uint(totalPrice));
+    // }
+}
     
     function getTotalOrder(address _addr) view public returns (int) {
         int counter = 0;
