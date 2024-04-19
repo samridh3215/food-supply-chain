@@ -9,7 +9,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@helia/json": "^3.0.3",
     "@truffle/contract": "^4.6.31",
+    "aws-sdk": "^2.1599.0",
+    "body-parser": "^1.20.2",
+    "express": "^4.19.2",
+    "kubo-rpc-client": "^3.0.4",
     "web3": "^0.20.6"
   }
 }
