@@ -4,11 +4,11 @@ var contract = new web3.eth.Contract(abi, address);
 var quantity 
 var cname 
 var caddress
-const ipfs = window.KuboRpcClient.create({ host: 'localhost', port: 5001,   headers: {
-    authorization: 'k51qzi5uqu5dkcnd6q9n9gtbjxs0qvazp5n0ix7xrogssz27svm24c5bmo98vg'
-  } })
-console.log(ipfs)
-console.log(web3, contract)
+// const ipfs = window.KuboRpcClient.create({ host: 'localhost', port: 5001,   headers: {
+//     authorization: 'k51qzi5uqu5dkcnd6q9n9gtbjxs0qvazp5n0ix7xrogssz27svm24c5bmo98vg'
+//   } })
+// console.log(ipfs)
+// console.log(web3, contract)
 $(document).ready(function () {
 
 	contract.methods.getTotalProduct().call().then(function (totalProduct) {
